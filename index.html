@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD CARS</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="addCars">
+                <div class="addCars">
+                    <div class="field">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" placeholder="Nombre de auto">
+                    </div>
+                    <div class="field">
+                        <label for="model">Model:</label>
+                        <input type="text" id="model" placeholder="Modelo de auto">
+                    </div>
+                    <div class="field">
+                        <label for="doors">Doors:</label>
+                        <input type="text" id="doors" placeholder="Numero de puertas">
+                    </div>
+                    <div class="field">
+                        <label for="color">Color:</label>
+                        <input type="text" id="color" placeholder="Color">
+                    </div>
+                    <div class="field">
+                        <label for="brand">Brand:</label>
+                        <input type="text" id="brand" placeholder="Marca del auto">
+                    </div>
+                </div>
+    
+                <div class="btn-container">
+                    <button type="submit" class="submitBtn" id="submitBtn">
+                        Añadir auto
+                    </button>
+                    <button type="button" class="editBtn" id="editBtn">
+                        Editar auto
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="cars-container">
+            <div class="card">
+                <div class="image-car">
+                    
+                </div>
+                <div class="content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
