@@ -22,6 +22,8 @@
     background-color: #0a1931;
     color: #fff;
     border-radius: 10px;
+    position: fixed;
+    left: 1rem;
 }
 
 .form-container .field {
@@ -50,13 +52,8 @@
     height: 2rem;
 }
 
-.cars-container {
-    width: 60%;
-    height: 90vh;
-}
-
 .submitBtn, .editBtn {
-    width: 40%;
+    width: 45%;
     border: none;
     background-color: #ffc947;
     color: #fff;
@@ -66,24 +63,60 @@
 }
 
 /* Card */
-
-.cars-container .card {
-    width: 30%;
-    height: 45%;
-    overflow: hidden;
-    text-align: center;
-    transition: all 0.5s;
-    border-radius: 10px;
-    background-color: blueviolet;
+.cars-container {
+    width: 60%;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30%;
 }
 
-.card .icon-car {
+.cars-container .card {
+    width: 25%;
+    height: 45%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffc947;
+    display: flex;
+    align-items: center;
+    
+    margin: 0rem 2rem 2rem 2rem;
+}
+
+.cars-container .contentCard {
     width: 100%;
-    height: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cars-container .carInfo{
+    width: 80%;
+    height: 60%;
+}
+
+.cars-container .actionButtons {
+    width: 90%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
     margin-top: 1rem;
 }
 
-.card .icon-car i {
-    font-size: 4rem;
+.actionButtons button {
+    width: 40%;
+    border: none;
+    padding: 5px;
+    color: #fff;
+    border-radius: 7px;
 }
 
+.update {
+    background-color: #0064ea;
+}
+
+.delete {
+    background-color: #ff0f2d;
+}
