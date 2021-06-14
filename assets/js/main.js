@@ -7,14 +7,17 @@ let cars = [
       brand: "mazda"
     }
   ]
+//Variables para saber si se edita y se agrega
+let updateFlag = false;
+let updateIndex = null;
 
+//Varable que va a guardar el elemento HTML en el que vamos hacer render del array
 let carsContainerIU = document.getElementById("cars-container");
 
 //Añadir car al objeto
 let addCars = document.getElementById("addCars");
 
 const renderCar = () => {
-    //Borra los datos del auto ingresado
     carsContainerIU.innerHTML = "";
     carsArray = cars
 
@@ -41,11 +44,11 @@ const renderCar = () => {
         const colorCar = document.createElement("h4");
         const brandCar = document.createElement("h4");
         
-        nameCar.innerText = `${car.name}`
-        modelCar.innerText = `${car.model}`
-        doorsCar.innerText = `${car.doors}`
-        colorCar.innerText = `${car.color}`
-        brandCar.innerText = `${car.brand}`
+        nameCar.innerText = `Name: ${car.name}`
+        modelCar.innerText = `Model: ${car.model}`
+        doorsCar.innerText = `Doors: ${car.doors}`
+        colorCar.innerText = `Color: ${car.color}`
+        brandCar.innerText = `Brand: ${car.brand}`
 
         carInfo.appendChild(nameCar);
         carInfo.appendChild(modelCar);
@@ -62,9 +65,7 @@ const renderCar = () => {
         const updateBtn = document.createElement("button");
         updateBtn.setAttribute("class", "update");
 
-        updateBtn.addEventListener("click", () => {
-            return EditCar(car,index);
-        })
+        updateBtn.addEventListener("click", () => updateCar(index,car) )
         updateBtn.setAttribute("id", "update");
         updateBtn.innerText = "Editar";
 
@@ -84,19 +85,47 @@ const renderCar = () => {
 
 const createCar = event => {
     event.preventDefault();
-    let car = {
-        name: document.getElementById("name").value,
-        model: document.getElementById("model").value,
-        doors: document.getElementById("doors").value,
-        color: document.getElementById("color").value,
-        brand: document.getElementById("brand").value
-    }
 
-    cars.push(car);
-    renderCar();
+    if(updateFlag){
+        let updateCar = {
+            name: document.getElementById("name").value,
+            model: document.getElementById("model").value,
+            doors: document.getElementById("doors").value,
+            color: document.getElementById("color").value,
+            brand: document.getElementById("brand").value
+        }
+
+        cars[updateIndex] = updateCar;
+
+        updateFlag = false;
+        updateIndex = null;
+        renderCar();
+    }else{
+        let car = {
+            name: document.getElementById("name").value,
+            model: document.getElementById("model").value,
+            doors: document.getElementById("doors").value,
+            color: document.getElementById("color").value,
+            brand: document.getElementById("brand").value
+        }
+    
+        cars.push(car);
+        renderCar();
+    }  
+    addCars.reset();
 }
 
-
+const updateCar = (index,car) => {
+    console.log(car);
+    console.log(index)
+    document.getElementById("name").value = car.name;
+    document.getElementById("model").value = car.model;
+    document.getElementById("doors").value = car.doors;
+    document.getElementById("color").value = car.color;
+    document.getElementById("brand").value = car.brand; 
+    updateFlag = true;
+    updateIndex = index;
+}
 
 const deleteCar = index => {
     cars.splice(index, 1);

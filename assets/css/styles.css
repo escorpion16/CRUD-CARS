@@ -5,6 +5,9 @@
 }
 
 /* styles */
+body {
+    background-color: #373736;
+}
 .container {
     display: flex;
     justify-content: space-around;
@@ -52,8 +55,8 @@
     height: 2rem;
 }
 
-.submitBtn, .editBtn {
-    width: 45%;
+.submitBtn {
+    width: 80%;
     border: none;
     background-color: #ffc947;
     color: #fff;
@@ -74,15 +77,25 @@
 .cars-container .card {
     width: 25%;
     height: 45%;
-    text-align: center;
+    /* text-align: center; */
     border-radius: 10px;
     background-color: #ffc947;
+    color: #fff;
     display: flex;
     align-items: center;
-    
     margin: 0rem 2rem 2rem 2rem;
+    background-image: url("https://image.freepik.com/vector-gratis/senal-neon-velocidad-creciente-coche_1262-21528.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: ease 0.5s;
+    font-weight: bolder;
+    font-size: 1.2rem;
 }
 
+.cars-container .card:hover {
+    transform: translateY(1rem)
+}
 .cars-container .contentCard {
     width: 100%;
     height: 100%;
