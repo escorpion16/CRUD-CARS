@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-/* styles */
 body {
-    background-color: #373736;
+    font-family: 'Cabin', sans-serif;
 }
+
+/* styles */
 .container {
     display: flex;
     justify-content: space-around;
@@ -79,7 +80,7 @@ body {
     height: 45%;
     /* text-align: center; */
     border-radius: 10px;
-    background-color: #ffc947;
+    background-color: #000;
     color: #fff;
     display: flex;
     align-items: center;
@@ -91,11 +92,25 @@ body {
     transition: ease 0.5s;
     font-weight: bolder;
     font-size: 1.2rem;
+    line-height: 2rem;
+    position: relative;
+}
+
+.card::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
 }
 
 .cars-container .card:hover {
     transform: translateY(1rem)
 }
+
 .cars-container .contentCard {
     width: 100%;
     height: 100%;
@@ -103,6 +118,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .cars-container .carInfo{
@@ -115,7 +131,7 @@ body {
     height: 2rem;
     display: flex;
     justify-content: space-around;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .actionButtons button {
@@ -127,9 +143,9 @@ body {
 }
 
 .update {
-    background-color: #0064ea;
+    background-color: #3988ee;
 }
 
 .delete {
-    background-color: #ff0f2d;
+    background-color: #e62f44;
 }
