@@ -1,12 +1,4 @@
-let cars = [
-    {
-      name: "Mazda 2",
-      model: "2019",
-      doors: 5,
-      color: "red",
-      brand: "mazda"
-    }
-  ]
+let cars = [];
 //Variables para saber si se edita y se agrega
 let updateFlag = false;
 let updateIndex = null;
@@ -17,11 +9,26 @@ let carsContainerIU = document.getElementById("cars-container");
 //Añadir car al objeto
 let addCars = document.getElementById("addCars");
 
+//Obteniendo objeto del localstorage
+let localCarsArray = JSON.parse(localStorage.getItem("carsStorageArray"));
+
+// Funcion para guadar en localStorage
+const carsStorage = () => {
+    if (typeof(Storage) !== "undefined"){
+        localStorage.setItem("carsStorageArray", JSON.stringify(cars));
+        renderCar();
+    }else {
+        alert("Tu navegador no soporta localstorage!");
+    }
+}
+
 const renderCar = () => {
     carsContainerIU.innerHTML = "";
-    carsArray = cars
-
-    //Se recorre el objeto cars 
+    let carsArray = JSON.parse(localStorage.getItem("carsStorageArray"));
+    if(carsArray === null){
+        carsArray = [];
+    }else{
+        //Se recorre el objeto cars 
     carsArray.forEach((car, index) => {
 
         //Se crea el card que va a contener la informacion de cada car
@@ -80,7 +87,8 @@ const renderCar = () => {
         //Agregaos los botones al div contenedor de botones
         actionButtons.appendChild(updateBtn);
         actionButtons.appendChild(deleteBtn);
-    });
+    });  
+    } 
 }
 
 const createCar = event => {
@@ -94,11 +102,11 @@ const createCar = event => {
             color: document.getElementById("color").value,
             brand: document.getElementById("brand").value
         }
-
         cars[updateIndex] = updateCar;
 
         updateFlag = false;
         updateIndex = null;
+        carsStorage();
         renderCar();
     }else{
         let car = {
@@ -108,27 +116,36 @@ const createCar = event => {
             color: document.getElementById("color").value,
             brand: document.getElementById("brand").value
         }
-    
-        cars.push(car);
+        if(localCarsArray === null){
+            localCarsArray = [];
+        }
+        cars.push(...localCarsArray, car);
+        carsStorage();
         renderCar();
     }  
     addCars.reset();
 }
 
 const updateCar = (index,car) => {
-    console.log(car);
-    console.log(index)
+    let updateCarStorage = JSON.parse(localStorage.getItem("carsStorageArray"));
+    cars = updateCarStorage;
+
     document.getElementById("name").value = car.name;
     document.getElementById("model").value = car.model;
     document.getElementById("doors").value = car.doors;
     document.getElementById("color").value = car.color;
     document.getElementById("brand").value = car.brand; 
+    cars.splice(index,1,car);
+    carsStorage();
     updateFlag = true;
-    updateIndex = index;
+    updateIndex = index;  
 }
 
 const deleteCar = index => {
+    let deleteCarStorage = JSON.parse(localStorage.getItem("carsStorageArray"));
+    cars = deleteCarStorage;  
     cars.splice(index, 1);
+    carsStorage();
     renderCar();
 }
 addCars.addEventListener("submit", createCar);
